@@ -1,0 +1,44 @@
+version: '3'
+
+services:
+
+  # api:
+  #   container_name: node_wishlist
+  #   image: node:10
+  #   networks:
+  #     - db
+  #     - frontend
+  #   ports:
+  #     - "3000:3000"
+
+  #   command: sh -c "npm install && npm run dev"
+  #   depends_on:
+  #     - db
+  #   working_dir: /app
+  #   volumes:
+  #     - ./:/app
+  #   environment:
+  #     NODE_ENV: development
+  #   env_file:
+  #     - .env
+
+  db:
+    container_name: mongo_wishlist
+    image: mongo
+    networks:
+      - db_mongo
+    volumes:
+      - db_data:/data/db
+    ports:
+      - "27017:27017"
+    environment:
+      MONGODB_USER: root
+      MONGODB_PASS: root
+      MONGO_DATA_DIR: /data/db
+    
+
+networks:
+  db_mongo:
+
+volumes:
+  db_data:

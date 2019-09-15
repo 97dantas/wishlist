@@ -3,9 +3,9 @@ const HttpStatus = require('http-status-codes')
 
 const { mapperError } = require('../../mappers/error')
 const moduleError = {
-    'user-already-exists': {
+    E11000: {
         status: HttpStatus.CONFLICT,
-        message: 'E-mail já existente.'
+        message: 'Cliente já cadastrado com esse email'
     }
 }
 module.exports = (error) => {

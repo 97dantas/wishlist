@@ -36,7 +36,8 @@ const clientSchema = new Schema(
         email: {
             type: String,
             unique: true,
-            required: true
+            required: true,
+            index: true
         },
         productsFavorites: [productsSchema],
         createdAt: Date,

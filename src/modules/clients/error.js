@@ -6,6 +6,10 @@ const moduleError = {
     E11000: {
         status: HttpStatus.CONFLICT,
         message: 'Cliente já cadastrado com esse email'
+    },
+    productNotFound: {
+        status: HttpStatus.CONFLICT,
+        message: 'Produto não encontrado na base'
     }
 }
 module.exports = (error) => {

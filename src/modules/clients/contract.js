@@ -21,5 +21,13 @@ module.exports = {
             name: Joi.string().optional(),
             email: Joi.string().email().optional()
         }
+    },
+    addProductsFavorites: {
+        params: {
+            _id: Joi.objectId().required()
+        },
+        body: {
+            id: Joi.string().required()
+        }
     }
 }

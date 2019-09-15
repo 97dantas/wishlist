@@ -1,6 +1,8 @@
 const error = require('./error')
 const { Logger } = require('./../../helpers/logger/logger')
-const { saveClient, updateOne, find, findOne } = require('./repository')
+const { saveClient, updateOne, find, findOne, getProductsAsync, setProducts } = require('./repository')
+const { api } = require('./../../helpers/axios/axios')
+
 exports.createClient = async (body) => {
     try {
         const resp = await saveClient(body)
@@ -26,7 +28,7 @@ exports.createClient = async (body) => {
             method: 'createClient',
             dir: __dirname,
             success: false,
-            asdfasdf: String(err),
+            err: String(err),
             request: body,
             locale: 'service.js'
         }))
@@ -55,7 +57,7 @@ exports.findClient = async (query) => {
             method: 'findClient',
             dir: __dirname,
             success: false,
-            asdfasdf: String(err),
+            err: String(err),
             request: query,
             locale: 'service.js'
         }))
@@ -84,7 +86,7 @@ exports.findOneClient = async (query) => {
             method: 'findOneClient',
             dir: __dirname,
             success: false,
-            asdfasdf: String(err),
+            err: String(err),
             request: query,
             locale: 'service.js'
         }))
@@ -113,7 +115,7 @@ exports.updateClient = async (params, body = {}) => {
             method: 'updateClient',
             dir: __dirname,
             success: false,
-            asdfasdf: String(err),
+            err: String(err),
             request: body,
             locale: 'service.js'
         }))
@@ -122,5 +124,42 @@ exports.updateClient = async (params, body = {}) => {
 }
 
 exports.addProductsFavorites = async (params, body) => {
-    
+    try {
+        const respCache = await getProductsAsync(body.id)
+
+        if (respCache) {
+            console.log('respCache: ', respCache)
+            const product = JSON.parse(respCache)
+            return updateOne({ _id: params._id, 'productsFavorites.id': { $ne: body.id } }, { $push: { productsFavorites: product } })
+        }
+        console.log('respCache: ', respCache)
+        const respAxios = await api.get(`product/${body.id}`)
+        console.log('body.id, respAxios.data', body.id, respAxios.data)
+        setProducts(body.id, respAxios.data)
+        const resp = await updateOne({ _id: params._id, 'productsFavorites.id': { $ne: body.id } }, { $push: { productsFavorites: respAxios.data } })
+        Logger.info(JSON.stringify({
+            type: 'info',
+            endpoint: 'client/',
+            method: 'updateClient',
+            dir: __dirname,
+            success: true,
+            request: body,
+            response: resp,
+            locale: 'service.js'
+        }))
+        return resp
+    } catch (err) {
+        Logger.error(JSON.stringify({
+            type: 'error',
+            endpoint: 'client/addProductsFavorites',
+            method: 'addProductsFavorites',
+            dir: __dirname,
+            success: false,
+            err: String(err),
+            request: body,
+            locale: 'service.js'
+        }))
+        if (err.message.endsWith('404')) throw error('productNotFound')
+        // if(err)
+    }
 }

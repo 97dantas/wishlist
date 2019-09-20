@@ -2,7 +2,7 @@
 const { createLogger, format, transports } = require('winston')
 const { combine } = format
 
-module.exports.Logger = createLogger({
+const logger = createLogger({
     level: 'info',
     format: combine(
         format.colorize(),
@@ -25,4 +25,23 @@ module.exports.Logger = createLogger({
             filename: `${__dirname}/../../../logs/logs.log`
         })
     ]
+})
+
+module.exports.Logger = logger
+
+module.exports.factoryLogger = ({ dir, locale }) => ({
+    info: (dataLogger) => {
+        logger.info(JSON.stringify({
+            dir,
+            locale,
+            ...dataLogger
+        }))
+    },
+    error: (dataLogger) => {
+        logger.error(JSON.stringify({
+            dir,
+            locale,
+            ...dataLogger
+        }))
+    }
 })

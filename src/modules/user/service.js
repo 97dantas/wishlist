@@ -1,61 +1,33 @@
 const error = require('./error')
-const { Logger } = require('./../../helpers/logger/logger')
+const { Logger, factoryLogger } = require('./../../helpers/logger/logger')
 const { userMapper } = require('./../../mappers/user')
 const { generateHash } = require('./../../helpers/bcrypt/bcrypt')
 const { compare } = require('./../../helpers/bcrypt/bcrypt')
 const { createToken } = require('./../../helpers/jwt')
 const { saveUser, findByKey, updateToken, list } = require('./repository')
 
+const logger = factoryLogger({ dir: __dirname, locale: 'service.js' })
+
 exports.createUserService = async (body) => {
     try {
         body.password = generateHash(body.password)
         const resp = await saveUser(body)
-        Logger.info(JSON.stringify({
-            type: 'info',
-            endpoint: '/create',
-            method: 'createUser',
-            success: true,
-            request: body,
-            response: body,
-            locale: 'service.js'
-        }))
+
+        logger.info({ endpoint: 'user/', method: 'createUserService', request: body, response: resp })
         return resp
     } catch (err) {
-        Logger.error(JSON.stringify({
-            type: 'error',
-            endpoint: '/create',
-            method: 'createUser',
-            success: false,
-            err: String(err),
-            request: body,
-            locale: 'service.js'
-        }))
+        logger.error({ endpoint: 'user/', method: 'createUserService', err: String(err), request: body })
         throw error(err.message)
     }
 }
 exports.listUserService = async (body) => {
     try {
         const resp = await list(body)
-        Logger.info(JSON.stringify({
-            type: 'info',
-            endpoint: '/create',
-            method: 'createUser',
-            success: true,
-            request: body,
-            response: resp,
-            locale: 'service.js'
-        }))
+
+        logger.info({ endpoint: 'user/', method: 'listUserService', request: body, response: resp })
         return resp
     } catch (err) {
-        Logger.error(JSON.stringify({
-            type: 'error',
-            endpoint: '/create',
-            method: 'createUser',
-            success: false,
-            err: String(err),
-            request: body,
-            locale: 'service.js'
-        }))
+        logger.error({ endpoint: 'user/', method: 'listUserService', err: String(err), request: body })
         throw error(err.message)
     }
 }
@@ -71,12 +43,13 @@ exports.signInService = async (body) => {
         const token = await createToken(resultUser)
 
         updateToken({ _id: user._id }, token)
-
+        logger.info({ endpoint: 'user/', method: 'listUserService', request: body, response: body })
         return {
             user: resultUser,
             token
         }
     } catch (err) {
+        logger.error({ endpoint: 'user/', method: 'signInService', err: String(err), request: body })
         throw error(err.message)
     }
 }

@@ -16,6 +16,7 @@ module.exports.findOne = async (req, res, next) => {
 }
 module.exports.create = async (req, res, next) => {
     try {
+        console.log('create router')
         res.json(await createClient(req.body))
     } catch (error) {
         next(error)

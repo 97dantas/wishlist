@@ -1,4 +1,4 @@
-const { createClient, updateClient, findClient, findOneClient, addProductsFavorites } = require('./service')
+const { createClient, updateClient, findClient, findOneClient, addProductsFavorites, removeOne } = require('./service')
 
 module.exports.find = async (req, res, next) => {
     try {
@@ -9,14 +9,13 @@ module.exports.find = async (req, res, next) => {
 }
 module.exports.findOne = async (req, res, next) => {
     try {
-        res.json(await findOneClient(req.query))
+        res.json(await findOneClient(req.params))
     } catch (error) {
         next(error)
     }
 }
 module.exports.create = async (req, res, next) => {
     try {
-        console.log('create router')
         res.json(await createClient(req.body))
     } catch (error) {
         next(error)
@@ -26,6 +25,13 @@ module.exports.create = async (req, res, next) => {
 module.exports.update = async (req, res, next) => {
     try {
         res.json(await updateClient(req.params, req.body))
+    } catch (error) {
+        next(error)
+    }
+}
+module.exports.removeOneClient = async (req, res, next) => {
+    try {
+        res.json(await removeOne(req.params))
     } catch (error) {
         next(error)
     }

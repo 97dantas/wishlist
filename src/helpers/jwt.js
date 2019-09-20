@@ -1,11 +1,9 @@
 const jwt = require('jsonwebtoken')
-const { SECRET, TOKEN_EXPIRES_IN } = require('./../config')
+const { SECRET } = require('./../config')
 exports.createToken = (data) => {
     return jwt.sign({
         ...data
-    }, SECRET, {
-        expiresIn: TOKEN_EXPIRES_IN
-    })
+    }, SECRET)
 }
 
 exports.decodeToken = (data) => {

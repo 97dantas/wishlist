@@ -11,8 +11,7 @@ const userSchema = new Schema({
         required: true
     },
     createdAt: Date,
-    updatedAt: Date,
-    token: String
+    updatedAt: Date
 })
 
 module.exports = model('User', userSchema)

@@ -18,6 +18,8 @@ exports.updateOne = async (query, data) => Client.updateOne(query, data)
 
 exports.findOneAndUpdate = async (query, data) => Client.findOneAndUpdate(query, data)
 
+exports.removeOne = async (query) => Client.deleteOne(query)
+
 exports.getProductsAsync = (id) => clientRedis.getAsync(`product/${id}`)
 
 exports.setProducts = (id, data) => clientRedis.set(`product/${id}`, JSON.stringify(data), 'EX', 15 * 60 * 10000)

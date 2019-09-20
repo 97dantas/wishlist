@@ -6,13 +6,17 @@ const { getProductsAsync, setProducts } = require('./repository')
 const api = factoryApi(BASE_URL_MAGALU)
 
 exports.findProducts = async (idProduct) => {
-    const respCache = await getProductsAsync(idProduct)
+    try {
+        const respCache = await getProductsAsync(idProduct)
 
-    if (respCache) return JSON.parse(respCache)
+        if (respCache) return JSON.parse(respCache)
 
-    const respAxios = await api.get(`product/${idProduct}`)
+        const respAxios = await api.get(`product/${idProduct}`)
 
-    setProducts(idProduct, respAxios.data)
+        setProducts(idProduct, respAxios.data)
 
-    return respAxios.data
+        return respAxios.data
+    } catch (error) {
+        // throw
+    }
 }

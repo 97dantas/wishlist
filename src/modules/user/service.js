@@ -1,5 +1,5 @@
 const error = require('./error')
-const { Logger, factoryLogger } = require('./../../helpers/logger/logger')
+const { factoryLogger } = require('./../../helpers/logger/logger')
 const { userMapper } = require('./../../mappers/user')
 const { generateHash } = require('./../../helpers/bcrypt/bcrypt')
 const { compare } = require('./../../helpers/bcrypt/bcrypt')
@@ -16,6 +16,8 @@ exports.createUserService = async (body) => {
         logger.info({ endpoint: 'user/', method: 'createUserService', request: body, response: resp })
         return resp
     } catch (err) {
+        if (err.message.startsWith('E11000')) throw error('E11000')
+
         logger.error({ endpoint: 'user/', method: 'createUserService', err: String(err), request: body })
         throw error(err.message)
     }
@@ -40,10 +42,10 @@ exports.signInService = async (body) => {
         if (!compare(user.password, body.password)) throw new Error('passwordInvalid')
 
         const resultUser = userMapper(user)
+
         const token = await createToken(resultUser)
 
-        updateToken({ _id: user._id }, token)
-        logger.info({ endpoint: 'user/', method: 'listUserService', request: body, response: body })
+        logger.info({ endpoint: 'user/', method: 'signInService', request: body, response: body })
         return {
             user: resultUser,
             token

@@ -1,7 +1,7 @@
 const HttpStatus = require('http-status-codes')
 const jwt = require('jsonwebtoken')
 const { SECRET } = require('./../config')
-const { findById } = require('./../modules/user/repository')
+// const { findById } = require('./../modules/user/repository')
 
 const decode = token => {
     return new Promise((resolve, reject) => {
@@ -45,14 +45,14 @@ exports.tokenVerify = async (req, res, next) => {
         }
 
         req.user = await decode(token, SECRET)
-        const userFinded = await findById(req.user._id)
+        // const userFinded = await findById(req.user._id)
 
-        if (userFinded.token !== token) {
-            res.status(HttpStatus.UNAUTHORIZED).send({
-                message: 'Token Invalid',
-                status: HttpStatus.UNAUTHORIZED
-            })
-        }
+        // if (userFinded.token !== token) {
+        //     res.status(HttpStatus.UNAUTHORIZED).send({
+        //         message: 'Token Invalid',
+        //         status: HttpStatus.UNAUTHORIZED
+        //     })
+        // }
         next()
     } catch (err) {
         res.status(HttpStatus.UNAUTHORIZED).send({

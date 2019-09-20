@@ -22,6 +22,11 @@ module.exports = {
             email: Joi.string().email().optional()
         }
     },
+    removeClient: {
+        params: {
+            _id: Joi.objectId().required()
+        }
+    },
     addProductsFavorites: {
         params: {
             _id: Joi.objectId().required()

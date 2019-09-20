@@ -16,7 +16,7 @@ exports.findProducts = async (idProduct) => {
         setProducts(idProduct, respAxios.data)
 
         return respAxios.data
-    } catch (error) {
-        // throw
+    } catch (err) {
+        throw new Error(err)
     }
 }

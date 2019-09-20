@@ -5,11 +5,15 @@ const { mapperError } = require('../../mappers/error')
 const moduleError = {
     E11000: {
         status: HttpStatus.CONFLICT,
-        message: 'Cliente já cadastrado com esse email'
+        message: 'user with this key already exists        '
     },
     productNotFound: {
-        status: HttpStatus.CONFLICT,
-        message: 'Produto não encontrado na base'
+        status: HttpStatus.OK,
+        message: 'Product not found in base'
+    },
+    clientNotFound: {
+        status: HttpStatus.OK,
+        message: 'Client not found in base'
     }
 }
 module.exports = (error) => {

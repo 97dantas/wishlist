@@ -2,7 +2,7 @@ const express = require('express')
 const validate = require('express-validation')
 
 const contract = require('./contract')
-const { create, signIn, list } = require('./controller')
+const { create, signIn, list } = require('./actions')
 
 const { tokenVerify } = require('./../../middlewares/authentication')
 

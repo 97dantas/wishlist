@@ -40,7 +40,6 @@ app.use((_, res) => res.status(HttpStatus.NOT_FOUND).json([{ title: '404', messa
 
 app.use(contractError)
 app.use((err, _, res, next) => {
-    console.log('err: ', err)
     const error = {
         status: parseInt(err.status) || 500,
         message: err.message || 'Erro interno no servidor',
@@ -51,6 +50,7 @@ app.use((err, _, res, next) => {
     res.status(error.status)
     res.json(err)
 })
+
 const listen = () => server.listen(port, () => Logger.info(`Server start in port: http://localhost:${port}`))
 
 mongoConnection

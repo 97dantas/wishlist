@@ -105,7 +105,21 @@ exports.addProductsFavorites = async (params, body) => {
     } catch (err) {
         logger.error({ endpoint: 'client/addProductsFavorites', method: 'addProductsFavorites', err: String(err), request: body })
 
-        if (err.message.endsWith('404')) throw error('productNotFound')
+        throw error(err.message)
+    }
+}
+
+exports.findProductsOfClient = async (params, body) => {
+    try {
+        const resp = await findOne(params, 'productsFavorites')
+
+        if (!resp) throw Error('clientNotFound')
+
+        logger.info({ endpoint: 'client/addProductsFavorites', method: 'findProductsOfClient', request: body, response: resp })
+
+        return resp
+    } catch (err) {
+        logger.error({ endpoint: 'client/addProductsFavorites', method: 'findProductsOfClient', err: String(err), request: body })
 
         throw error(err.message)
     }

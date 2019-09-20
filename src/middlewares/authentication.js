@@ -45,14 +45,7 @@ exports.tokenVerify = async (req, res, next) => {
         }
 
         req.user = await decode(token, SECRET)
-        // const userFinded = await findById(req.user._id)
 
-        // if (userFinded.token !== token) {
-        //     res.status(HttpStatus.UNAUTHORIZED).send({
-        //         message: 'Token Invalid',
-        //         status: HttpStatus.UNAUTHORIZED
-        //     })
-        // }
         next()
     } catch (err) {
         res.status(HttpStatus.UNAUTHORIZED).send({

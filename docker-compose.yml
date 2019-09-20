@@ -2,27 +2,28 @@ version: '3'
 
 services:
 
-  # api:
-  #   container_name: node_wishlist
-  #   image: node:10
-  #   networks:
-  #     - db
-  #     - frontend
-  #   ports:
-  #     - "3000:3000"
+  api:
+    container_name: node_wishlist
+    image: node:10
+    networks:
+      - db_mongo
+      - db_redis
+    ports:
+      - "3000:3000"
 
-  #   command: sh -c "npm install && npm run dev"
-  #   depends_on:
-  #     - db
-  #   working_dir: /app
-  #   volumes:
-  #     - ./:/app
-  #   environment:
-  #     NODE_ENV: development
-  #   env_file:
-  #     - .env
+    command: sh -c "npm install && npm run dev"
+    depends_on:
+      - mongo
+      - redis
+    working_dir: /app
+    volumes:
+      - ./:/app
+    environment:
+      NODE_ENV: development
+    env_file:
+      - .env
 
-  db:
+  mongo:
     container_name: mongo_wishlist
     image: mongo
     networks:
@@ -38,6 +39,7 @@ services:
   
   redis:
     image: redis
+    container_name: redis_wishlist
     networks:
       - db_redis
     command: redis-server

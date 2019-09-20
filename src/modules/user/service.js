@@ -4,7 +4,7 @@ const { userMapper } = require('./../../mappers/user')
 const { generateHash } = require('./../../helpers/bcrypt/bcrypt')
 const { compare } = require('./../../helpers/bcrypt/bcrypt')
 const { createToken } = require('./../../helpers/jwt')
-const { saveUser, findByKey, updateToken, list } = require('./repository')
+const { saveUser, findByKey, list } = require('./repository')
 
 const logger = factoryLogger({ dir: __dirname, locale: 'service.js' })
 

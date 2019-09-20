@@ -8,11 +8,11 @@ const moduleError = {
         message: 'user with this key already exists        '
     },
     productNotFound: {
-        status: HttpStatus.OK,
-        message: 'Product not found in base'
+        status: HttpStatus.NOT_FOUND,
+        message: 'Product not found in base magalu'
     },
     clientNotFound: {
-        status: HttpStatus.OK,
+        status: HttpStatus.NOT_FOUND,
         message: 'Client not found in base'
     }
 }

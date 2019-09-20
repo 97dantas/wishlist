@@ -32,7 +32,7 @@ module.exports = {
             _id: Joi.objectId().required()
         },
         body: {
-            id: Joi.string().required()
+            idProduct: Joi.string().required()
         }
     }
 }

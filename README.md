@@ -41,9 +41,9 @@
 
 ### API
 
-### Login
+### User API
 
-#### `POST`: `/api/user`
+#### `POST: /api/user`
 
 Criando usuário da api para ter acesso ao token
 
@@ -62,7 +62,7 @@ Criando usuário da api para ter acesso ao token
 }
 ```
 
-#### `POST`: `/api/user/sign-in`
+#### `POST: /api/user/sign-in`
 
 Autenticando usuário
 
@@ -73,7 +73,7 @@ Autenticando usuário
 }
 ```
 
-* Retorna objeto com os dados do cliente cadastrado
+* Retorna objeto com os dados do cliente cadastrado e o token
 ```json
 {
     "user": {
@@ -93,39 +93,10 @@ Autenticando usuário
 
 ### Client
 
-* O token obtido na rota `/api/user/sign-in` deve ser informado no header em formato `Authorization` : `Bearer token`, para as demais rotas
+* O token obtido na rota `/api/user/sign-in` deve ser informado no header em formato `Authorization` : `Bearer token` nas demais rotas
 
-#### `POST`: `/api/client`
 
-Autenticando usuário
-
-```json
-{
-    "name": "teste",
-    "email": "teste@teste.com"
-}
-```
-
-* Retorna objeto com os dados do usuario e o token, status code 201
-```json
-{
-    "_id": "5d84d2aaa632920038a608ad",
-    "name": "teste",
-    "email": "teste@teste.com",
-    "productsFavorites": [],
-    "__v": 0
-}
-```
-* Em caso de email já utilizado, status code 409
-```json
-{
-    "status": 409,
-    "message": "user with this key already exists"
-}
-```
-
-> /api-docs
-#### `POST`: `/api/client`
+#### `POST: /api/client`
 
 Cadastrando cliente
 
@@ -154,43 +125,9 @@ Cadastrando cliente
 }
 ```
 
-> /api-docs
-#### `POST`: `/api/client`
-
-Autenticando usuário
-
-```json
-{
-    "name": "teste",
-    "email": "teste@teste.com"
-}
-```
-
-* Retorna objeto com os dados do usuario e o token, status code 201
-```json
-{
-    "_id": "5d84d2aaa632920038a608ad",
-    "name": "teste",
-    "email": "teste@teste.com",
-    "productsFavorites": [],
-    "__v": 0
-}
-```
-* Em caso de email já utilizado, status code 409
-```json
-{
-    "status": 409,
-    "message": "user with this key already exists"
-}
-```
-
-
-
-
-#### `GET`: `/api/client`
+#### `GET: /api/client`
 
 Buscando todos os cliente
-
 
 * Retorna um array de objeto com os dados do cliente, status code 200
 ```json
@@ -214,7 +151,7 @@ Buscando todos os cliente
 
 
 
-#### `GET`: `/api/client/{_id}`
+#### `GET: /api/client/{_id_user}`
 
 Buscando cliente pelo ID
 
@@ -241,7 +178,7 @@ Buscando cliente pelo ID
 
 
 
-#### `PUT`: `/api/client/{_id}`
+#### `PUT: /api/client/{_id_user}`
 
 Atualiza as propriedades de um cliente
 
@@ -260,7 +197,7 @@ Atualiza as propriedades de um cliente
 }
 ```
 
-#### `DELETE`: `/api/client/{_id}`
+#### `DELETE: /api/client/{_id_user}`
 
 * Em caso de sucesso e status code 200
 ```json
@@ -270,6 +207,47 @@ Atualiza as propriedades de um cliente
     "deletedCount": 1
 }
 ```
+
+### Client/favorites_products
+
+#### `POST: /api/client/favorites_products/{_id_user}`
+
+* Adiciona um produto existente na base do magalu ao cliente dessa API
+
+```json
+{
+    "idProduct": "1bf0f365-fbdd-4e21-9786-da459d78dd1f" 
+}
+```
+
+* Em caso de sucesso e status code 200
+
+```json
+{
+    "n": 1,
+    "ok": 1,
+    "deletedCount": 1
+}
+```
+
+* Quando não houve inserção de novos produtos ao cliente
+
+```json
+{
+    "n": 0,
+    "nModified": 0,
+    "ok": 1
+}
+```
+* Quando não há um produto correspondente ao idProduct enviado pelo body
+
+```json
+{
+    "status": 404,
+    "message": "Product not found in base magalu"
+}
+```
+
 
 ### Execute tests
 Start tests.

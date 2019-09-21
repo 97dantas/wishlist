@@ -74,8 +74,8 @@ Autenticando usuário
 
 ```json
 {
-    "name": "teste",
-    "email": "teste@teste.com"
+    "key": "fac89da119f1c2e",
+    "password": "e9e77eb5396"
 }
 ```
 

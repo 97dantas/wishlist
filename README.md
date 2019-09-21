@@ -157,7 +157,7 @@ Buscando todos os cliente
 
 
 
-#### `GET: /api/client/{_id}`
+#### `GET: /api/client/{client_id}`
 
 Buscando cliente pelo ID
 
@@ -184,7 +184,7 @@ Buscando cliente pelo ID
 
 
 
-#### `PUT: /api/client/{_id}`
+#### `PUT: /api/client/{client_id}`
 
 Atualiza as propriedades de um cliente
 
@@ -203,7 +203,7 @@ Atualiza as propriedades de um cliente
 }
 ```
 
-#### `DELETE: /api/client/{_id}`
+#### `DELETE: /api/client/{client_id}`
 
 * Em caso de sucesso e status code 200
 ```json
@@ -216,9 +216,9 @@ Atualiza as propriedades de um cliente
 
 ### /favorites-products
 
-#### `GET: /api/favorites-products/{_id}`
+#### `GET: /api/favorites-products/{client_id}`
 
-#### `POST: /api/favorites-products/{_id}`
+#### `POST: /api/favorites-products/{client_id}`
 
 * Adiciona um produto existente na base do magalu ao cliente dessa API
 
@@ -255,8 +255,3 @@ Atualiza as propriedades de um cliente
     "message": "Product not found in base magalu"
 }
 ```
-
-
-### Execute tests
-Start tests.
-> npm run test

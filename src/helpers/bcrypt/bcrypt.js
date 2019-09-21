@@ -1,7 +1,7 @@
 const bcrypt = require('bcryptjs')
 
 exports.generateHash = (data) => {
-    const salt = bcrypt.genSaltSync(13)
+    const salt = bcrypt.genSaltSync(5)
     return bcrypt.hashSync(data, salt)
 }
 

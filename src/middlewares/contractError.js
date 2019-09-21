@@ -10,7 +10,5 @@ module.exports = (err, req, res, next) => {
             stack: err.stack
         }
         res.status(convertedError.status || 400).json(convertedError)
-    }
-
-    next(err)
+    } else next(err)
 }

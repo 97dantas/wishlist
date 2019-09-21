@@ -39,7 +39,7 @@ exports.signInService = async (body) => {
 
         if (!user) throw new Error('notFound')
 
-        if (!compare(user.password, body.password)) throw new Error('passwordInvalid')
+        if (!compare(body.password, user.password)) throw new Error('passwordInvalid')
 
         const resultUser = userMapper(user)
 

@@ -5,4 +5,4 @@ exports.generateHash = (data) => {
     return bcrypt.hashSync(data, salt)
 }
 
-exports.compare = (hash, password) => bcrypt.compareSync(password, hash)
+exports.compare = (password, hash) => bcrypt.compareSync(password, hash)

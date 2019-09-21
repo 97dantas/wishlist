@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon index.js",
     "lint": "eslint '**/*.js' ",
@@ -22,6 +23,7 @@
   "dependencies": {
     "axios": "^0.18.1",
     "axios-cache-adapter": "^2.4.1",
+    "bcrypt-nodejs": "0.0.3",
     "bcryptjs": "^2.4.3",
     "bluebird": "^3.5.5",
     "body-parser": "^1.19.0",
@@ -37,11 +39,11 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.7.1",
     "morgan": "^1.9.1",
-    "nodemon": "^1.19.2",
     "redis": "^2.8.0",
     "winston": "^3.2.1"
   },
   "devDependencies": {
+    "nodemon": "^1.19.2",
     "eslint": "^6.4.0",
     "eslint-config-standard": "^14.1.0",
     "eslint-plugin-import": "^2.18.2",

@@ -1,4 +1,5 @@
-exports.userMapper = ({ key, _id }) => ({
+exports.userMapper = ({ _id, key, password }) => ({
+    _id,
     key,
-    _id
+    password
 })

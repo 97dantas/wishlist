@@ -26,13 +26,5 @@ module.exports = {
         params: {
             _id: Joi.objectId().required()
         }
-    },
-    addProductsFavorites: {
-        params: {
-            _id: Joi.objectId().required()
-        },
-        body: {
-            idProduct: Joi.string().required()
-        }
     }
 }

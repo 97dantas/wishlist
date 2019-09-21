@@ -73,7 +73,7 @@ Autenticando usuário
 }
 ```
 
-* Retorna objeto com os dados do cliente cadastrado e o token
+* Retorna objeto com os dados do usuário e o token
 ```json
 {
     "user": {

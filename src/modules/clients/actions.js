@@ -1,4 +1,4 @@
-const { createClient, updateClient, findClient, findOneClient, findProductsOfClient, addProductsFavorites, removeOne } = require('./service')
+const { createClient, updateClient, findClient, findOneClient, findProductsOfClient, remove } = require('./service')
 
 module.exports.find = async (req, res, next) => {
     try {
@@ -38,15 +38,7 @@ module.exports.update = async (req, res, next) => {
 }
 module.exports.removeOneClient = async (req, res, next) => {
     try {
-        res.json(await removeOne(req.params))
-    } catch (error) {
-        next(error)
-    }
-}
-
-module.exports.addProductsFavorites = async (req, res, next) => {
-    try {
-        res.json(await addProductsFavorites(req.params, req.body))
+        res.json(await remove(req.params))
     } catch (error) {
         next(error)
     }

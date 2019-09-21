@@ -41,7 +41,7 @@
 
 3. Entendendo o fluxo do cache
 * Cache utilizado para melhorar o tempo de resposta ao adicionar um produto a lista de favoritos
-    ![Draw cache](draw.png)
+    ![Draw cache](./draw.png)
 
 ### API
 

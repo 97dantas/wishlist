@@ -102,7 +102,7 @@ Autenticando usuário
 * O token obtido na rota `/api/user/sign-in` deve ser informado no header em formato `Authorization` : `Bearer token` nas demais rotas
 
 
-#### `POST: /api/client`
+#### `POST: /api/customer`
 
 Cadastrando cliente
 
@@ -131,7 +131,7 @@ Cadastrando cliente
 }
 ```
 
-#### `GET: /api/client`
+#### `GET: /api/customer`
 
 Buscando todos os cliente
 
@@ -157,7 +157,7 @@ Buscando todos os cliente
 
 
 
-#### `GET: /api/client/{client_id}`
+#### `GET: /api/customer/{customer_id}`
 
 Buscando cliente pelo ID
 
@@ -184,7 +184,7 @@ Buscando cliente pelo ID
 
 
 
-#### `PUT: /api/client/{client_id}`
+#### `PUT: /api/customer/{customer_id}`
 
 Atualiza as propriedades de um cliente
 
@@ -203,7 +203,7 @@ Atualiza as propriedades de um cliente
 }
 ```
 
-#### `DELETE: /api/client/{client_id}`
+#### `DELETE: /api/customer/{customer_id}`
 
 * Em caso de sucesso e status code 200
 ```json
@@ -216,9 +216,9 @@ Atualiza as propriedades de um cliente
 
 ### /favorites-products
 
-#### `GET: /api/favorites-products/{client_id}`
+#### `GET: /api/favorites-products/{customer_id}`
 
-#### `POST: /api/favorites-products/{client_id}`
+#### `POST: /api/favorites-products/{customer_id}`
 
 * Adiciona um produto existente na base do magalu ao cliente dessa API
 

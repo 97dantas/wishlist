@@ -11,9 +11,9 @@ const moduleError = {
         status: HttpStatus.NOT_FOUND,
         message: 'Product not found in base magalu'
     },
-    clientNotFound: {
+    customerNotFound: {
         status: HttpStatus.NOT_FOUND,
-        message: 'Client not found in base'
+        message: 'Customer not found in base'
     }
 }
 module.exports = (error) => {

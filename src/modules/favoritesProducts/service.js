@@ -14,29 +14,29 @@ exports.addProductsFavorites = async (params, body) => {
 
         const resp = await updateOne({ _id: params._id, 'productsFavorites.id': { $ne: body.idProduct } }, { $push: { productsFavorites: products } })
 
-        logger.info({ endpoint: 'client/addProductsFavorites', method: 'addProductsFavorites', request: body, response: resp })
+        logger.info({ endpoint: 'favorites-products/', method: 'addProductsFavorites', request: body, response: resp })
 
         return resp
     } catch (err) {
-        logger.error({ endpoint: 'client/addProductsFavorites', method: 'addProductsFavorites', err: String(err), request: body })
-        
+        logger.error({ endpoint: 'favorites-products/', method: 'addProductsFavorites', err: String(err), request: body })
+
         if (err.message.endsWith('404')) throw error('productNotFound')
 
         throw error(err.message)
     }
 }
 
-exports.findProductsOfClient = async (params, body) => {
+exports.findProductsOfCustomer = async (params, body) => {
     try {
         const resp = await findOne(params, 'productsFavorites')
 
-        if (!resp) throw Error('clientNotFound')
+        if (!resp) throw Error('customerNotFound')
 
-        logger.info({ endpoint: 'client/addProductsFavorites', method: 'findProductsOfClient', request: body, response: resp })
+        logger.info({ endpoint: 'favorites-products/', method: 'findProductsOfCustomer', request: body, response: resp })
 
         return resp
     } catch (err) {
-        logger.error({ endpoint: 'client/addProductsFavorites', method: 'findProductsOfClient', err: String(err), request: body })
+        logger.error({ endpoint: 'favorites-products/', method: 'findProductsOfCustomer', err: String(err), request: body })
 
         throw error(err.message)
     }

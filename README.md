@@ -212,9 +212,11 @@ Atualiza as propriedades de um cliente
 }
 ```
 
-### Client/favorites_products
+### /favorites-products
 
-#### `POST: /api/client/favorites_products/{_id_user}`
+#### `GET: /api/favorites-products/{_id_user}`
+
+#### `POST: /api/favorites-products/{_id_user}`
 
 * Adiciona um produto existente na base do magalu ao cliente dessa API
 

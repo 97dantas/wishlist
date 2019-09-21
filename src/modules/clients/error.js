@@ -5,7 +5,7 @@ const { mapperError } = require('../../mappers/error')
 const moduleError = {
     E11000: {
         status: HttpStatus.CONFLICT,
-        message: 'user with this key already exists        '
+        message: 'user with this email already exists        '
     },
     productNotFound: {
         status: HttpStatus.NOT_FOUND,

@@ -45,6 +45,8 @@
 
 ### API
 
+* Todos os exemplos a seguir estão disponíveis para importação no postman através do [link ](https://documenter.getpostman.com/view/8010686/SVmyRHMm?version=latest)
+
 ### User API
 
 #### `POST: /api/user`
@@ -155,7 +157,7 @@ Buscando todos os cliente
 
 
 
-#### `GET: /api/client/{_id_user}`
+#### `GET: /api/client/{_id}`
 
 Buscando cliente pelo ID
 
@@ -182,7 +184,7 @@ Buscando cliente pelo ID
 
 
 
-#### `PUT: /api/client/{_id_user}`
+#### `PUT: /api/client/{_id}`
 
 Atualiza as propriedades de um cliente
 
@@ -201,7 +203,7 @@ Atualiza as propriedades de um cliente
 }
 ```
 
-#### `DELETE: /api/client/{_id_user}`
+#### `DELETE: /api/client/{_id}`
 
 * Em caso de sucesso e status code 200
 ```json
@@ -214,9 +216,9 @@ Atualiza as propriedades de um cliente
 
 ### /favorites-products
 
-#### `GET: /api/favorites-products/{_id_user}`
+#### `GET: /api/favorites-products/{_id}`
 
-#### `POST: /api/favorites-products/{_id_user}`
+#### `POST: /api/favorites-products/{_id}`
 
 * Adiciona um produto existente na base do magalu ao cliente dessa API
 

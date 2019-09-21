@@ -11,7 +11,7 @@ const logger = factoryLogger({ dir: __dirname, locale: 'service.js' })
 exports.createUserService = async (body) => {
     try {
         body.password = generateHash(body.password)
-        const resp = await saveUser(body)
+        const resp = userMapper(await saveUser(body))
 
         logger.info({ endpoint: 'user/', method: 'createUserService', request: body, response: resp })
         return resp
